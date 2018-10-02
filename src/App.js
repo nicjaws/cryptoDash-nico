@@ -52,12 +52,12 @@ class App extends Component {
   confirmFavorites = () => {
     localStorage.setItem('cryptoDash', 'test');
     this.setState({
-      firstVisit: false
+      firstVisit: false,
+      page: 'dashboard'
     })
   }
   settingsContent = () => {
-    return 
-    <div>
+    return <div>
       {this.firstVisitMessage()}
       <div onClick={this.confirmFavorites}>
         Confirm Favorites
@@ -74,9 +74,9 @@ class App extends Component {
           <div>
 
           </div>
-          <ControlButton onClick={() => {this.setState({page: 'dashboard'})}} active={this.displayingDashboard()}>
-            Dashboard
-          </ControlButton>
+            {!this.state.firstVisit && (<ControlButton onClick={() => {this.setState({page: 'dashboard'})}} active={this.displayingDashboard()}>
+                Dashboard
+              </ControlButton>)}
           <ControlButton onClick={() => {this.setState({page: 'settings'})}} active={this.displayingSettings()}>
             Settings
           </ControlButton>
